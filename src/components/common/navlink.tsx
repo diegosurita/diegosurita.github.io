@@ -1,13 +1,14 @@
 import Link from "next/link";
+import { ReactNode, HTMLAttributes } from "react";
 
-type NavLinkProps = Readonly<{
+type NavLinkProps = {
   href: string;
-  children: React.ReactNode;
-}>;
+  children: ReactNode;
+} & HTMLAttributes<HTMLLIElement>;
 
-export default function NavLink({ href, children }: NavLinkProps) {
+export default function NavLink({ href, children, ...props }: NavLinkProps) {
   return (
-    <li className="hover:text-gray-400">
+    <li className={`hover:text-gray300 ${props.className ?? ''}`} {...props}>
       <Link href={href}>{children}</Link>
     </li>
   );

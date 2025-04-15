@@ -20,7 +20,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
       <body>
-          <div className="container mx-auto flex flex-col flex-1 h-screen">
+          <div className="container px-5 md:px-0 mx-auto flex flex-col flex-1 h-screen">
             <Navbar />
             <main className="flex-1">
               {children}

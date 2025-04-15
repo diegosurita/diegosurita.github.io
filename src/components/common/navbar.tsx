@@ -10,7 +10,7 @@ export default function Navbar() {
       </Link>
       <ul className="flex gap-4">
         <NavLink href="/about">About</NavLink>
-        <NavLink href="/blog">Blog</NavLink>
+        <NavLink className="hidden" href="/blog">Blog</NavLink>
         <NavLink href="/contact">Contact</NavLink>
       </ul>
     </nav>
