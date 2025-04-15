@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { ReactNode } from "react";
+import parse from "html-react-parser";
 
 const getDictionary = (files: string[], folder: string): Record<string, any> => {
   return files
@@ -32,7 +33,7 @@ export default function useTranslations(locale: string) {
         console.warn(`Translation key "${key}" did not return a string`);
         return key;
       }
-      return result;
+      return parse(result);
     },
   };
 }
