@@ -19,8 +19,10 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: next-build
-          path: ./.next
+          name: next_build
+          path: ./.next/*
+          if-no-files-found: error
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -29,7 +31,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: next-build
+          name: next_build
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
