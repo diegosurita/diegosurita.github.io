@@ -4,6 +4,13 @@ type HomeProps = Readonly<{
   params: Promise<{ lang: string }>;
 }>;
 
+export async function generateStaticParams() {
+  return [
+    { lang: 'en' },
+    { lang: 'pt-br' },
+  ];
+}
+
 export default function Home({ params }: HomeProps) {
   const { t } = useTranslations(params);
 

@@ -21,7 +21,7 @@ const getDictionary = (files: string[], folder: string): Dictionary => {
 };
 
 const getLang = (params: Params): string => {
-  let lang = "en";
+  let lang = "pt-br";
   params.then((params) => {
     lang = params.lang;
   });
