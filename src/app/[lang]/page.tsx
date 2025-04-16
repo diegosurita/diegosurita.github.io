@@ -4,9 +4,8 @@ type HomeProps = Readonly<{
   params: Promise<{ lang: string }>;
 }>;
 
-export default async function Home({ params }: HomeProps) {
-  const { lang } = await params;
-  const { t } = useTranslations(lang);
+export default function Home({ params }: HomeProps) {
+  const { t } = useTranslations(params);
 
   return (
     <div className="flex flex-col items-center justify-center gap-8 mx-auto max-w-3xl">
