@@ -1,17 +1,36 @@
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 const locales = ["en", "pt-br"];
 const defaultLocale = "pt-br";
 
-export function middleware(request: NextRequest) {
+const getPathnameLang = (pathname: string) => {
+  return pathname.split("/")[1];
+};
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
+  const cookieStore = await cookies();
+  const pathnameLang = getPathnameLang(pathname);
+  const cookieLang = cookieStore.get("lang")?.value;
 
-  if (pathnameHasLocale) return NextResponse.next();
+  if (pathnameHasLocale && locales.includes(pathnameLang)) {
+    if (cookieLang !== pathnameLang) {
+      cookieStore.set("lang", pathnameLang);
+    }
+    return NextResponse.next();
+  }
+
+  if (cookieLang && locales.includes(cookieLang)) {
+    request.nextUrl.pathname = `/${cookieLang}${pathname}`;
+    return NextResponse.redirect(request.nextUrl);
+  }
 
   request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
+  cookieStore.set("lang", defaultLocale);
 
   return NextResponse.redirect(request.nextUrl);
 }
