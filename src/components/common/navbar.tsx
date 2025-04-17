@@ -11,7 +11,7 @@ export default function Navbar() {
       <ul className="flex gap-4">
         <NavLink href="/about">About</NavLink>
         <NavLink className="hidden" href="/blog">Blog</NavLink>
-        <NavLink href="/contact">Contact</NavLink>
+        <NavLink href="mailto:suritadev@gmail.com">Contact</NavLink>
       </ul>
     </nav>
   );
