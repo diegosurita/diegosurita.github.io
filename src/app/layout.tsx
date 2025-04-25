@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Footer from "@/components/common/footer";
 import Navbar from "@/components/common/navbar";
@@ -18,7 +18,7 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>;
 }>) {
   const { lang } = await params;
-  
+
   return (
     <html lang={lang}>
       <head>
@@ -26,14 +26,12 @@ export default async function RootLayout({
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
       <body>
-          <div className="container px-5 mx-auto flex flex-col flex-1 h-screen">
-            <Navbar />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <GoogleAnalytics gaId="G-KEGV160RYL" />
+        <div className="container px-5 mx-auto flex flex-col flex-1 min-h-screen">
+          <Navbar />
+          <main className="flex-1">{children}</main>
+        </div>
+        <Footer />
+        <GoogleAnalytics gaId="G-KEGV160RYL" />
       </body>
     </html>
   );
