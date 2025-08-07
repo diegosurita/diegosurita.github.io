@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.pnpm-store/
+pnpm-lock.yaml
 
 /.idea/*
 !/.idea/runConfigurations
@@ -48,3 +50,5 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+.db
