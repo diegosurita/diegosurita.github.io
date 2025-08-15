@@ -1,67 +1,202 @@
-# Payload Blank Template
+# Diego Surita's Personal Website
 
-This template comes configured with the bare minimum to get started on anything you need.
+This is the personal website of Diego Surita, built with **Next.js 15** and **Payload CMS 3.5** using TypeScript and PostgreSQL.
 
-## Quick start
+## 🚀 Features
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+- **Modern Stack**: Next.js 15 with App Router
+- **Headless CMS**: Payload CMS for content management
+- **Database**: PostgreSQL with connection pooling
+- **Type Safety**: Full TypeScript implementation
+- **Security**: Built-in security headers and CSP
+- **Performance**: Optimized builds with code splitting
+- **Testing**: E2E and integration tests with Playwright and Vitest
+- **Docker**: Complete containerization setup
 
-## Quick Start - local setup
+## 🛠 Tech Stack
 
-To spin up this template locally, follow these steps:
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **CMS**: Payload CMS 3.5 with Lexical editor
+- **Database**: PostgreSQL
+- **Styling**: CSS with custom properties
+- **Testing**: Playwright (E2E), Vitest (Integration)
+- **Deployment**: Docker, Vercel-ready
 
-### Clone
+## 📋 Prerequisites
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
+- Node.js 18.20.2+ or 20.9.0+
+- pnpm 9+ (recommended) or npm
+- PostgreSQL 17+ (or use Docker)
 
-### Development
+## 🚀 Quick Start
 
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
+### 1. Clone and Install
 
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
+```bash
+git clone https://github.com/diegosurita/diegosurita.github.io.git
+cd diegosurita.github.io
+pnpm install
+```
 
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
+### 2. Environment Setup
 
-#### Docker (Optional)
+```bash
+cp .env.example .env
+```
 
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
+Update the `.env` file with your values:
+```env
+DATABASE_URI=postgresql://postgres:postgres@localhost:5432/diegosurita-dev
+PAYLOAD_SECRET=your-very-secure-secret-key-here
+```
 
-To do so, follow these steps:
+### 3. Database Setup
 
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+**Option A: Local PostgreSQL**
+```bash
+# Make sure PostgreSQL is running
+# Create database: diegosurita-dev
+```
 
-## How it works
+**Option B: Docker (Recommended)**
+```bash
+pnpm run docker:up
+```
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+### 4. Development
 
-### Collections
+```bash
+pnpm dev
+```
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+Open [http://localhost:3000](http://localhost:3000) to see the website.
+Access the admin panel at [http://localhost:3000/admin](http://localhost:3000/admin).
 
-- #### Users (Authentication)
+## 🧪 Testing
 
-  Users are auth-enabled collections that have access to the admin panel.
+```bash
+# Run all tests
+pnpm test
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+# Integration tests only
+pnpm run test:int
 
-- #### Media
+# E2E tests only  
+pnpm run test:e2e
+```
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+## 🏗 Building
 
-### Docker
+```bash
+# Production build
+pnpm build
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+# Start production server
+pnpm start
+```
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+## 🐳 Docker Development
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
+The project includes a complete Docker setup:
 
-## Questions
+```bash
+# Start all services (app + PostgreSQL)
+pnpm run docker:up
 
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+# Stop services
+pnpm run docker:down
+
+# View logs
+pnpm run docker:logs
+
+# Restart services
+pnpm run docker:restart
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── (frontend)/          # Public website pages
+│   ├── (payload)/           # Payload CMS admin
+│   └── my-route/           # Custom API routes
+├── collections/            # Payload collections
+│   ├── Users.ts
+│   └── Media.ts
+├── components/             # Reusable components
+└── payload.config.ts       # Payload configuration
+```
+
+## 🔧 Available Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+- `pnpm test` - Run all tests
+- `pnpm docker:up` - Start Docker services
+
+## 🔒 Security Features
+
+- **Security Headers**: CSP, HSTS, X-Frame-Options, etc.
+- **Environment Validation**: Required env vars validation
+- **Type Safety**: Strict TypeScript configuration
+- **Content Security Policy**: Configured CSP headers
+- **HTTPS Enforcement**: HSTS headers for production
+
+## 🚀 Deployment
+
+The project is configured for deployment on:
+
+- **Vercel**: Zero-config deployment
+- **Docker**: Production-ready containers
+- **Any Node.js hosting**: Standard Next.js build
+
+### Vercel Deployment
+
+1. Connect your repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on push
+
+### Docker Deployment
+
+```bash
+# Build production image
+docker build -t diegosurita-website .
+
+# Run container
+docker run -p 3000:3000 diegosurita-website
+```
+
+## 📝 Environment Variables
+
+| Variable | Description | Required | Default |
+|----------|-------------|----------|---------|
+| `DATABASE_URI` | PostgreSQL connection string | Yes | - |
+| `PAYLOAD_SECRET` | Secret key for Payload CMS | Yes | - |
+| `PAYLOAD_PUBLIC_SERVER_URL` | Public URL for the app | No | `http://localhost:3000` |
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+If you have any questions or issues, please:
+
+1. Check the [Payload CMS documentation](https://payloadcms.com/docs)
+2. Review [Next.js documentation](https://nextjs.org/docs)
+3. Open an issue in this repository
+
+---
+
+Built with ❤️ by [Diego Surita](https://github.com/diegosurita)

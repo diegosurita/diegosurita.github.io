@@ -52,3 +52,7 @@ node_modules/
 /playwright/.cache/
 
 .db
+
+# Backup files
+*_OLD.*
+*_BACKUP.*

@@ -25,16 +25,26 @@ export default async function HomePage() {
             height={65}
             src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-favicon.svg"
             width={65}
+            priority
           />
         </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
+        {!user && <h1>Welcome to Diego Surita&apos;s Website</h1>}
         {user && <h1>Welcome back, {user.email}</h1>}
+        
+        {!user && (
+          <p>
+            This is the personal website of Diego Surita, built with Next.js and Payload CMS.
+            Explore the admin panel to manage content or browse the documentation to learn more.
+          </p>
+        )}
+        
         <div className="links">
           <a
             className="admin"
             href={payloadConfig.routes.admin}
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Go to admin panel"
           >
             Go to admin panel
           </a>
@@ -43,17 +53,23 @@ export default async function HomePage() {
             href="https://payloadcms.com/docs"
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Read Payload CMS documentation"
           >
             Documentation
           </a>
         </div>
       </div>
-      <div className="footer">
-        <p>Update this page by editing</p>
-        <a className="codeLink" href={fileURL}>
+      
+      <footer className="footer">
+        <p>Built with Next.js and Payload CMS</p>
+        <a 
+          className="codeLink" 
+          href={fileURL}
+          aria-label="View source code"
+        >
           <code>app/(frontend)/page.tsx</code>
         </a>
-      </div>
+      </footer>
     </div>
   )
 }

@@ -13,6 +13,23 @@ import { Media } from './collections/Media'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+// Environment validation
+const requiredEnvVars = {
+  PAYLOAD_SECRET: process.env.PAYLOAD_SECRET,
+  DATABASE_URI: process.env.DATABASE_URI,
+}
+
+const missingEnvVars = Object.entries(requiredEnvVars)
+  .filter(([, value]) => !value)
+  .map(([key]) => key)
+
+if (missingEnvVars.length > 0) {
+  throw new Error(
+    `Missing required environment variables: ${missingEnvVars.join(', ')}. ` +
+    'Please copy .env.example to .env and fill in the required values.'
+  )
+}
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -22,13 +39,13 @@ export default buildConfig({
   },
   collections: [Users, Media],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: requiredEnvVars.PAYLOAD_SECRET!,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || '',
+      connectionString: requiredEnvVars.DATABASE_URI!,
     },
   }),
   sharp,
