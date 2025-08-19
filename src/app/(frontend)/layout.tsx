@@ -1,18 +1,15 @@
 import React from 'react'
-import './styles.css'
-
-export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
-}
+import './globals.css'
+import TopMenu from '@/components/frontend/top-menu'
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
     <html lang="en">
-      <body>
-        <main>{children}</main>
+      <body className="bg-slate-900 text-white font-poppins">
+        <TopMenu />
+        <main className="flex-grow container mx-auto mt-18">{children}</main>
       </body>
     </html>
   )
