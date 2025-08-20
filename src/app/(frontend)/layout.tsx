@@ -9,7 +9,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en">
       <body className="bg-slate-900 text-white font-poppins">
         <TopMenu />
-        <main className="flex-grow container mx-auto mt-18">{children}</main>
+        <main className="flex-grow container mx-auto pt-18">{children}</main>
       </body>
     </html>
   )

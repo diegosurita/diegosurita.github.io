@@ -3,7 +3,7 @@ import { IoLanguage } from 'react-icons/io5'
 
 const TopMenu = () => {
   return (
-    <div className="w-full absolute top-0 left-0 z-50">
+    <div className="w-full fixed top-0 left-0 z-50">
       <div className="container mx-auto h-16 flex items-center justify-between">
         <Link href="/">
           <h1 className="text-2xl">Diego Surita</h1>
@@ -12,7 +12,7 @@ const TopMenu = () => {
           <ul className="flex gap-6">
             <li className="relative">
               <Link href="/">Home</Link>
-              <span className="absolute left-0 right-0 -bottom-1 h-0.5 bg-white " />
+              <span className="absolute left-0 right-0 -bottom-1 h-0.5 bg-white" />
             </li>
             <li>
               <Link href="/about">About</Link>
