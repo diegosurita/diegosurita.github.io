@@ -1,9 +1,29 @@
+'use client'
+
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { IoLanguage } from 'react-icons/io5'
 
+const NAV_HEIGHT = 64 // h-16 (Tailwind)
+
 const TopMenu = () => {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY >= NAV_HEIGHT)
+    }
+    handleScroll() // initialize
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
-    <div className="w-full fixed top-0 left-0 z-50">
+    <div
+      className={`w-full fixed top-0 left-0 z-50 backdrop-blur transition-colors duration-300 ${
+        scrolled ? 'bg-blue-950/60 shadow-sm' : 'bg-transparent'
+      }`}
+    >
       <div className="container mx-auto h-16 flex items-center justify-between">
         <Link href="/">
           <h1 className="text-2xl">Diego Surita</h1>
