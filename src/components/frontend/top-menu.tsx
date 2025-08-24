@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { IoLanguage } from 'react-icons/io5'
+import TopMenuFlag from '@/components/frontend/top-menu-flag'
 
 const NAV_HEIGHT = 64 // h-16 (Tailwind)
 
@@ -21,32 +21,37 @@ const TopMenu = () => {
   return (
     <div
       className={`w-full fixed top-0 left-0 z-50 backdrop-blur transition-colors duration-300 ${
-        scrolled ? 'bg-blue-950/60 shadow-sm' : 'bg-transparent'
+        scrolled ? 'bg-blue-950/40 shadow-md' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto h-16 flex items-center justify-between">
         <Link href="/">
-          <h1 className="text-2xl">Diego Surita</h1>
+          <h1 className="text-xl hover:text-blue-500 text-shadow-lg text-shadow-slate-900">
+            {'</>'} Diego Surita
+          </h1>
         </Link>
-        <nav>
-          <ul className="flex gap-6">
-            <li className="relative">
-              <Link href="/">Home</Link>
-              <span className="absolute left-0 right-0 -bottom-1 h-0.5 bg-white" />
-            </li>
-            <li>
-              <Link href="/about">About</Link>
-            </li>
-            <li>
-              <Link href="/projects">Projects</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contact</Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="ml-4">
-          <IoLanguage className="text-xl cursor-pointer" />
+        <div className="flex gap-2 relative">
+          <nav>
+            <ul className="flex gap-6">
+              <li>
+                <Link href="/about" className="hover:text-blue-500">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects" className="hover:text-blue-500">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-blue-500">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <span>|</span>
+          <TopMenuFlag />
         </div>
       </div>
     </div>

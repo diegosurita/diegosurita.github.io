@@ -55,8 +55,8 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-4 mb-32">
-        <h2 className="text-3xl text-blue-500">A little bit about me</h2>
+      <div className="flex flex-col items-center gap-4">
+        <h2 className="text-3xl text-blue-500">A bit about me</h2>
         <p className="text-gray-400 max-w-xl text-center">
           Software engineer with over {getYearsOfExperience()} years of experience building web
           applications of various sizes, using diverse technologies across different industries. I'm
