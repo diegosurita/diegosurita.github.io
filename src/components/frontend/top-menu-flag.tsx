@@ -7,7 +7,7 @@ const TopMenuFlag = () => {
   return (
     <div className="relative">
       <Menu as="div">
-        <MenuButton>
+        <MenuButton as="div" className="focus:outline-none">
           <span className="fi fi-us" />
         </MenuButton>
 

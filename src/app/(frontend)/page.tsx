@@ -1,6 +1,8 @@
 import Button from '@/components/frontend/button'
 import Link from 'next/dist/client/link'
 import React from 'react'
+import { PiOpenAiLogo } from 'react-icons/pi'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
 
 export const metadata = {
   description: "Hi, I'm Diego Surita, a software engineer.",
@@ -66,6 +68,27 @@ export default async function HomePage() {
         <Link href="/about">
           <Button text="Learn more about me" variant="soft" />
         </Link>
+      </div>
+      <div className="flex flex-col items-center gap-4 mt-42 mb-10">
+        <h2 className="text-3xl text-blue-500">Latest Tools & Techniques</h2>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Popover>
+            <PopoverButton className="focus:outline-none border-1 border-gray-700 rounded-lg p-4 hover:cursor-pointer">
+              <PiOpenAiLogo />
+            </PopoverButton>
+            <PopoverPanel
+              transition
+              anchor="top"
+              className="w-64 divide-y rounded-md p-4 bg-slate-800 text-sm/6 transition duration-200 ease-in-out [--anchor-gap:--spacing(3)] data-closed:-translate-y-1 data-closed:opacity-0"
+            >
+              I have been using AI tools like ChatGPT and GitHub Copilot to enhance my productivity
+              and streamline my workflow.
+            </PopoverPanel>
+          </Popover>
+          <div className="border-1 border-gray-700 rounded-lg p-4">Next.js</div>
+          <div className="border-1 border-gray-700 rounded-lg p-4">TypeScript</div>
+          <div className="border-1 border-gray-700 rounded-lg p-4">React</div>
+        </div>
       </div>
     </>
   )
